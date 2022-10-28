@@ -1,0 +1,18 @@
+###
+
+POST  http://localhost:3000/box/create HTTP/1.1
+content-type: application/json
+
+{
+    "type_box": "26_ects_C",
+    "largo": 280,
+    "ancho": 130,
+    "alto": 30
+}
+
+###
+GET http://localhost:3000/boxes HTTP/1.1
+
+
+###
+Get http://localhost:3000/box/63448729bcdbccf07a340b91 HTTP/1.1
