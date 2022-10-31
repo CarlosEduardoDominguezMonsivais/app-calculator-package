@@ -113,13 +113,20 @@
                     {% endif %}
                 </div>
                 </div>
-                <div class="flex justify-start">
-                {%- comment -%} <div class="title-font font-medium text-lg text-gray-900">Area: <strong id="area_total">{{valores.area}}</strong></div>
+                {%- comment -%}<div class="flex justify-start">
+                <div class="title-font font-medium text-lg text-gray-900">Area: <strong id="area_total">{{valores.area}}</strong></div>
                 <div class="title-font font-medium text-lg text-gray-900">Peso volumetrico: <strong id="peso_volumetrico">{{valores.peso_volumetrico}}</strong></div>
                 <div class="title-font font-medium text-lg text-gray-900">Total sin IVA: <strong id="costo_sin_iva">{{valores.precio_sin_iva}}</strong></div>
                 <div class="flex">
-                <span class="title-font font-medium text-2xl text-gray-900">Total con IVA: <strong class="text-red-500" id="costo_con_iva">{{valores.precio_con_iva}}</strong></span> {%- endcomment -%}
+                <span class="title-font font-medium text-2xl text-gray-900">Total con IVA: <strong class="text-red-500" id="costo_con_iva">{{valores.precio_con_iva}}</strong></span>
                     <button type="submit" class="text-white bg-blue-pp border-0 py-3 px-8 focus:outline-none hover:bg-blue-900 rounded font-semibold"><i class="fa-solid fa-box pr-1"></i> Cotizar</button>
+                </div>{%- endcomment -%}
+                <div class="title-font font-medium text-lg text-gray-900">Area: <strong id="area_total">{{valores.area}}</strong></div>
+                <div class="title-font font-medium text-lg text-gray-900">Peso volumetrico: <strong id="peso_volumetrico">{{valores.peso_volumetrico}}</strong></div>
+                <div class="title-font font-medium text-lg text-gray-900">Total sin IVA: <strong id="costo_sin_iva">{{valores.precio_sin_iva}}</strong></div>
+                <div class="flex">
+                <span class="title-font font-medium text-2xl text-gray-900">Total con IVA: <strong class="text-red-500" id="costo_con_iva">{{valores.precio_con_iva}}</strong></span>
+                    <button type="submit" class="ml-auto text-white bg-blue-pp border-0 py-2 px-8 focus:outline-none hover:bg-blue-900 rounded"><i class="fa-solid fa-box"></i> Cotizar</button>
                 </div>
             </form>
         </div>

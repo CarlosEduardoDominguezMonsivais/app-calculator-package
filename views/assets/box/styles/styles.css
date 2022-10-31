@@ -539,6 +539,9 @@ video {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
+.ml-auto {
+  margin-left: auto;
+}
 .block {
   display: block;
 }
@@ -580,8 +583,8 @@ video {
 .items-center {
   align-items: center;
 }
-.justify-end {
-  justify-content: flex-end;
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-center {
   justify-content: center;
@@ -665,6 +668,10 @@ video {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .pl-3 {
   padding-left: 0.75rem;
