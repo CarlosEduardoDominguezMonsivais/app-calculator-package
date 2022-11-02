@@ -5,24 +5,19 @@ const { validateCreate } = require('../validators/boxes');
 const prefix = '/';
 
 router.get(
-    `${prefix}box/create`,
+    `${prefix}`,
     controllers.main.index
 )
 
-router.get(
-    `${prefix}boxes/`,
-    controllers.main.getBox
-)
-
 router.post(
-    `${prefix}box/create`,
+    `${prefix}`,
     validateCreate,
     controllers.main.createBox
 );
 
 router.get(
-    `${prefix}box/:id`,
-    controllers.main.getBoxId
+    `${prefix}quote`,
+    controllers.main.confirmQuote
 )
 
 module.exports = router;
