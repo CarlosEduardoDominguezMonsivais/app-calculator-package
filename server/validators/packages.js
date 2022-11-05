@@ -1,7 +1,7 @@
 const { check } = require('express-validator');
 const  validateResults  = require('../helpers/validateHelper');
 
-const validateCreate = [
+const validateCreatePackage = [
     // check('largo_pliego_mm.length_total_sheet_milimeters')
     // .custom(value => {
     //     if( value > 2900) {
@@ -24,39 +24,26 @@ const validateCreate = [
     //         return value;
     //     }
     // }),
-    // check('largo')
-    // .custom(value => {
-    //     if( value === null || value === undefined || value === ''){
-    //         throw new Error('El largo no puede estar vacio');
-    //     }else if (value >= 90 && value <= 290) {
-    //         return value;
-    //     }else{
-    //         throw new Error('El largo minimo es de 90 cm y el maximo es de 290 cm');
-    //     }
-    //   }),
-    // check('ancho')
-    // .custom(value => {
-    //     if( value === null || value === undefined || value === ''){
-    //         throw new Error('El ancho no puede estar vacio');
-    //     }else if (value >= 40 && value <= 140) {
-    //         return value;
-    //     }else{
-    //         throw new Error('El ancho minimo es de 40 cm y el maximo es de 140 cm');
-    //     }
-    //   }),
     check('type_box')
     .exists()
-    .not()
+    .notEmpty()
     .withMessage('Tiene que seleccionar un tipo de caja'),
     check('alto')
     .exists()
-    .not()
-    .isEmpty()
-    .withMessage('La altura no puede estar vacia'),
+    .notEmpty()
+    .withMessage('El alto no puede estar vacio'),
+    check('ancho')
+    .exists()
+    .notEmpty()
+    .withMessage('El ancho no puede estar vacio'),
+    check('largo')
+    .exists()
+    .notEmpty()
+    .withMessage('El largo no puede estar vacio'),
     (req, res, next) => {
         return validateResults(req, res, next);
     }
 ]
 
-module.exports = { validateCreate };
+module.exports = { validateCreatePackage };
 

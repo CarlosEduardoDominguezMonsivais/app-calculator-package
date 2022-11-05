@@ -5,11 +5,11 @@ const validateResults = (req, res, next) => {
         validationResult(req).throw()
         return next()
     }catch(errors) {
-        const valores = req.body
+        // const valores = req.body
         const validaciones = errors.array()
         res.status(403);
         res.send({validaciones})
-        // res.render('calculator_boxes', {validaciones:validaciones, valores: valores})
+        // res.render('calculator_boxes', {validaciones, valores})
     }
 }
 

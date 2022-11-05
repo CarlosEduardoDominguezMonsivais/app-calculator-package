@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-const boxeSchema = mongoose.Schema(
+const packageSchema = mongoose.Schema(
     {
         type_box: {
             type: String,
@@ -75,4 +74,4 @@ const boxeSchema = mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model('Boxes', boxeSchema);
+module.exports = mongoose.model('Packages', packageSchema);

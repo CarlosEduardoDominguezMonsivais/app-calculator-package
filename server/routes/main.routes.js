@@ -1,7 +1,7 @@
 'use strict';
 const router = require('express').Router();
 const controllers = require('../controllers');
-const { validateCreate } = require('../validators/boxes');
+const { validateCreatePackage } = require('../validators/packages');
 const prefix = '/';
 
 router.get(
@@ -11,7 +11,7 @@ router.get(
 
 router.post(
     `${prefix}`,
-    validateCreate,
+    validateCreatePackage,
     controllers.main.createBox
 );
 
