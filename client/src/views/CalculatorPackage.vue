@@ -129,7 +129,19 @@
                 </div>
             </div>
           </div>
-          <div class="flex">
+          <div class="flex items-center">
+            <label class="form-label mr-4 text-gray-700">Cantidad: </label>
+            <div class="flex flex-row h-10 w-32 rounded-lg relative bg-transparent mt-1">
+              <!-- <button data-action="decrement" class="bg-gris-default text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-l cursor-pointer outline-none">
+                <span class="m-auto text-2xl font-thin">−</span>
+              </button> -->
+              <vue-number-input  :model-value="0" inline center controls v-model="quote.cantidad"></vue-number-input>
+              <!-- <button data-action="increment" class="bg-gris-default text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-r cursor-pointer">
+              <span class="m-auto text-2xl font-thin">+</span>
+              </button> -->
+            </div>
+            <!-- <input type="number" name="cantidad" id="cantidad" class="form-control px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              v-model="quote.cantidad" />-->
             <button type="button" class="ml-auto text-white bg-blue-pp border-0 py-2 px-8 focus:outline-none bg-blue-900 rounded" @click="createdQuote">
               <i class="fa-solid fa-box"></i> Cotizar
             </button>
@@ -206,17 +218,17 @@
                 </ul>
                 <div class="px-8 border-b">
                     <div class="flex justify-between py-4 text-gray-600">
-                        <span>Cantidad de cajas minimas a fabricar</span>
-                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_minimo_boxes}}</span>
+                        <span>Cantidad de cajas</span>
+                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_boxes}}</span>
                     </div>
                     <div class="flex justify-between py-4 text-gray-600">
-                        <span>Costo total de fabricacion</span>
-                        <span class="font-semibold text-blue-pp">$ {{this.quote_manufacturing.costo_total_con_iva}}</span>
+                        <span>Costo total</span>
+                        <span class="font-semibold text-blue-pp">$ {{this.quote_manufacturing.costo_total_con_iva}} <span class="text-xs"> con iva</span></span>
                     </div>
                 </div>
                 <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
                     <span>Precio total</span>
-                    <span>$ {{this.quote_manufacturing.precio_total_con_iva}}</span>
+                    <span>$ {{this.quote_manufacturing.precio_total_con_iva}} <span class="text-xs"> con iva</span></span>
                 </div>
             </div>
           </div>
@@ -253,6 +265,24 @@
   </section>
 </template>
 
+<style scoped>
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+
+</style>
+
 <script>
 import PackageService from '../PackageService'
 import Swal from 'sweetalert2'
@@ -272,7 +302,9 @@ export default {
         alto: '',
         largo: '',
         ancho: '',
+        cantidad: ''
       },
+      
       toogleModal: false,
       errors: [],
       error_calculation: [],
@@ -315,8 +347,8 @@ export default {
       showQuoteCalculator(quote) {
         this.toogleModal = !this.toogleModal
         this.quote_calulate = quote
-        const { minimo_fabricacion } = quote
-        this.quote_manufacturing = minimo_fabricacion
+        const { data_fabricacion } = quote
+        this.quote_manufacturing = data_fabricacion.data_manufacturing
       },
 
       async sendQuoteCalculate() {
@@ -358,7 +390,7 @@ export default {
           console.log(error)
         })
         } 
-    }
+    },
 
   }
 

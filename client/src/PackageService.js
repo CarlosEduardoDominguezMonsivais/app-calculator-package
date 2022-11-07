@@ -6,9 +6,9 @@ const url2 = '/calculator/send';
 class PackageService {
     // Post Package
     static postPackage(body) {
-        const {largo, ancho, alto, type_box} = body
+        const {largo, ancho, alto, type_box, cantidad} = body
         return axios.post(url, {
-          largo, ancho, alto, type_box
+          largo, ancho, alto, type_box, cantidad
         });
     }
 

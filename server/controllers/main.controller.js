@@ -25,7 +25,7 @@ class MainController {
 
     createBox(req, res) {
         try {
-            const { type_box, alto, largo, ancho } =  req.body;
+            const { type_box, alto, largo, ancho, cantidad } =  req.body;
             let type_box_value;
             switch (type_box) {
                 case '26_ects_C': 
@@ -51,6 +51,7 @@ class MainController {
                 alto, 
                 largo,
                 ancho,
+                cantidad,
                 costo_unitario_con_iva: priceWithIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 costo_unitario_sin_iva: priceWithoutIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 area: squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
@@ -59,7 +60,7 @@ class MainController {
                 ancho_pliego_cm: widthTotalSheetCentimeters(parseFloat(ancho), parseFloat(alto)),
                 largo_pliego_mm: lengthTotalSheetMilimeters(parseFloat(largo), parseFloat(ancho)),
                 ancho_pliego_mm: widthTotalSheetMilimeters(parseFloat(ancho), parseFloat(alto)),
-                minimo_fabricacion: miniManufacturing(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho))
+                data_fabricacion: manufacturing(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho), cantidad),
             }
 
             // const valores = await packageSchema.create(boxes)
@@ -145,32 +146,41 @@ class MainController {
             return `${parseInt(volumetric_weight)}`
         }
 
-        function miniManufacturing(type_box_value, alto, largo, ancho) {
-            const area = squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
+        function manufacturing(type_box_value, alto, largo, ancho, cantidad) {
+            var area = squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
             margen = 0.20,
             costo_sin_iva =  priceWithoutIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
-            fabricacion_minimo_boxes = Math.ceil(1500 / area),
-            fabricacion_minimo_boxes_menos_10_porciento = Math.ceil(fabricacion_minimo_boxes * 0.9),
-            fabricacion_minimo_boxes_mas_10_porciento =  Math.ceil(fabricacion_minimo_boxes * 1.1),
-            costo_total_sin_iva = (fabricacion_minimo_boxes * costo_sin_iva).toFixed(2),
-            costo_total_con_iva = (costo_total_sin_iva * 1.16).toFixed(2),
-            precio_total_con_iva = (costo_total_con_iva / (1 - margen)).toFixed(2),
-            precio_total_con_iva_menos_10_porciento = precio_total_con_iva * 0.9,
-            precio_total_con_iva_mas_10_porciento = precio_total_con_iva * 1.1,
-            precio_unitario_con_iva = (precio_total_con_iva / fabricacion_minimo_boxes).toFixed(2)
-        
-            const data_minimum_manufacturing = {
-                fabricacion_minimo_boxes,
-                fabricacion_minimo_boxes_menos_10_porciento,
-                fabricacion_minimo_boxes_mas_10_porciento,
-                costo_total_sin_iva,
-                costo_total_con_iva,
-                precio_total_con_iva,
-                precio_total_con_iva_menos_10_porciento,
-                precio_total_con_iva_mas_10_porciento,
-                precio_unitario_con_iva
+            fabricacion_minimo_boxes = Math.ceil(1500 / area)
+            if (cantidad < fabricacion_minimo_boxes ) {
+                return res.status(400).send({ error:`La cantidad minima de fabricacion es de  ${fabricacion_minimo_boxes}` });
+            }else{
+                const fabricacion_boxes = cantidad,
+                fabricacion_boxes_menos_10_porciento = Math.ceil(fabricacion_boxes * 0.9),
+                fabricacion_boxes_mas_10_porciento =  Math.ceil(fabricacion_boxes * 1.1),
+                costo_total_sin_iva = (fabricacion_boxes * costo_sin_iva).toFixed(2),
+                costo_total_con_iva = (costo_total_sin_iva * 1.16).toFixed(2),
+                precio_total_con_iva = (costo_total_con_iva / (1 - margen)).toFixed(2),
+                precio_total_con_iva_menos_10_porciento = precio_total_con_iva * 0.9,
+                precio_total_con_iva_mas_10_porciento = precio_total_con_iva * 1.1,
+                precio_unitario_con_iva = (precio_total_con_iva / fabricacion_boxes).toFixed(2)
+                const data_manufacturing_total = {
+                    data_minimum_manufacturing: {
+                        fabricacion_minimo_boxes
+                    },
+                    data_manufacturing: {
+                        fabricacion_boxes,
+                        fabricacion_boxes_menos_10_porciento,
+                        fabricacion_boxes_mas_10_porciento,
+                        costo_total_sin_iva,
+                        costo_total_con_iva,
+                        precio_total_con_iva,
+                        precio_total_con_iva_menos_10_porciento,
+                        precio_total_con_iva_mas_10_porciento,
+                        precio_unitario_con_iva
+                    }
+                } 
+                return data_manufacturing_total            
             }
-            return data_minimum_manufacturing
         }
     }
 
@@ -178,7 +188,6 @@ class MainController {
         try {
             const data =  req.body;
             const valores = await packageSchema.create(data)
-            console.log(valores)
             emailer.sendMail(valores)
             res.status(201).send({ data })
         }
