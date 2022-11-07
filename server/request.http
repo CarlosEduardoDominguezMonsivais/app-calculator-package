@@ -1,0 +1,42 @@
+###
+
+POST  http://localhost:3000/calculator HTTP/1.1
+content-type: application/json
+
+{
+    "type_box": "32_ects_C",
+    "type_box_value": 19.11,
+    "largo": 100,
+    "ancho": 100,
+    "alto": 100,
+    "precio_con_iva": "$ 181.13",
+    "precio_sin_iva": "$ 156.15",
+    "area": "8.170867 m2",
+    "peso_volumetrico": "200",
+    "largo_pliego_cm": 406,
+    "ancho_pliego_cm": 10003,
+    "largo_pliego_mm": {
+      "largo1_pliego": 1005,
+      "largo2_pliego": 1003,
+      "largo1_extra": 5,
+      "largo2_extra": 3,
+      "largo_ceja": 35,
+      "length_total_sheet_milimeters": ""
+    },
+    "ancho_pliego_mm": {
+      "ancho1_pliego": 1009,
+      "ancho2_pliego": 504,
+      "width_total_sheet_milimeters": ""
+    },
+    "_id": "63617672703fe03e99d274b1",
+    "createdAt": "2022-11-01T19:41:38.609Z",
+    "updatedAt": "2022-11-01T19:41:38.609Z"
+  
+}
+
+###
+GET http://localhost:3000/boxes HTTP/1.1
+
+
+###
+Get http://localhost:3000/box/63448729bcdbccf07a340b91 HTTP/1.1
