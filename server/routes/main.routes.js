@@ -15,9 +15,9 @@ router.post(
     controllers.main.createBox
 );
 
-router.get(
-    `${prefix}quote`,
-    controllers.main.confirmQuote
+router.post(
+    `${prefix}send`,
+    controllers.main.sendQuote
 )
 
 module.exports = router;

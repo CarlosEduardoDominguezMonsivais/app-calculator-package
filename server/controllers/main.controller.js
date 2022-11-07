@@ -174,8 +174,17 @@ class MainController {
         }
     }
 
-    confirmQuote(req, res) {
-        res.render('confirmation_quote_boxes')
+    async sendQuote(req, res) {
+        try {
+            const data =  req.body;
+            const valores = await packageSchema.create(data)
+            console.log(valores)
+            emailer.sendMail(valores)
+            res.status(201).send({ data })
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 
 }
