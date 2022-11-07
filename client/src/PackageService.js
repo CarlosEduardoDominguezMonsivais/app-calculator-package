@@ -1,6 +1,6 @@
 import axios from "axios";
-const url = 'http://localhost:3000/calculator';
-const url2 = 'http://localhost:3000/calculator/send';
+const url = '/calculator/';
+const url2 = '/calculator/send';
 
 
 class PackageService {
