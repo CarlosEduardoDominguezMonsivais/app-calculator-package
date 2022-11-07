@@ -346,7 +346,7 @@ export default {
           console.log(response)
             // const quote = response.data.boxes
             Swal.fire({
-            title: "¡Se ha efectuado el pago!",
+            title: "¡Se ha enviado la contización!",
             icon: "success",
           })
           this.toogleModal = !this.toogleModal     
