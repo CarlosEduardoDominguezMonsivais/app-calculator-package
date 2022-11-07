@@ -1,6 +1,6 @@
 <template>
   <section class="text-gray-700 body-font overflow-hidden bg-gris-default">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 md:py-24 mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="bg-white">
         <img alt="ecommerce" class="w-full object-cover object-center"
@@ -188,14 +188,18 @@
                         <div class="col-span-1 self-center">
                             <img src="../assets/img/cajas-de-carton.webp" alt="Product" class="rounded w-full">
                         </div>
-                        <div class="flex flex-col col-span-3 pt-2">
+                        <div class="flex flex-col col-span-2 pt-2">
                             <span class="text-gray-600 text-md font-semi-bold">Cajas de cartón</span>
                             <span class="text-gray-400 text-sm inline-block pt-2">para Fabricación</span>
                         </div>
-                        <div class="col-span-2 pt-3">
+                        <div class="col-span-3 pt-3">
+                            <div class="flex items-center space-x-2 text-sm justify-between">
+                                <span class="text-gray-400">Dimensiones</span>
+                                <span class="text-gray-400 inline-block">Precio unitario</span>
+                            </div>
                             <div class="flex items-center space-x-2 text-sm justify-between">
                                 <span class="text-gray-400">{{this.quote_calulate.largo}} x <span> {{this.quote_calulate.ancho}} x <span> {{this.quote_calulate.alto}}</span></span> </span>
-                                <span class="text-blue-pp font-semibold inline-block">{{this.quote_manufacturing.precio_unitario_con_iva}}</span>
+                                <span class="text-blue-pp font-semibold inline-block">$ {{this.quote_manufacturing.precio_unitario_con_iva}}<span class="text-xs"> con iva</span></span>
                             </div>
                         </div>
                     </li>
