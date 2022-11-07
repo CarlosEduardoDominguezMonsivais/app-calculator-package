@@ -126,17 +126,17 @@ class MainController {
         }
         
         function priceWithIVA(type_box_value, alto, largo, ancho) {
-            var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((alto*10)+8))/1000000) * type_box_value)) * 1.16);
+            var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value)) * 1.16);
             return price_with_iva.toFixed(2)
         }
         
         function priceWithoutIVA(type_box_value, alto, largo, ancho) {
-            var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((alto*10)+8))/1000000) * type_box_value));
+            var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value));
             return price_without_iva.toFixed(2)
         }
         
         function squareArea(alto, largo, ancho) {
-            var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((alto*10)+8)))/1000000);
+            var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((ancho*10)+8)))/1000000);
             return square_area
         }
         
