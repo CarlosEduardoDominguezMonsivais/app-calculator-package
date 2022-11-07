@@ -121,7 +121,7 @@ class MainController {
         }
         
         function widthTotalSheetCentimeters(ancho, alto) {
-            const ancho_total_pliego = ancho * alto + 3
+            const ancho_total_pliego = ancho + alto + 3
             return ancho_total_pliego
         }
         
