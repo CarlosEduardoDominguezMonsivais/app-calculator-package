@@ -10,6 +10,9 @@ module.exports = {
           azul: {
               default: '#0B4F7C',
           },
+          gris: {
+            default: '#F3F5F6',
+          },
           celeste:{
             default: '#33D9E2'
           }
