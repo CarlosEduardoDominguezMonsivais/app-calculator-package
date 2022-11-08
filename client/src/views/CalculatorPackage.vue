@@ -376,7 +376,7 @@ export default {
         if (newValue.type_box === '') {
           this.msg.type_box = ['El tipo de caja es obligatorio caja']
         }else if (newValue.largo === '') {
-          this.msg.largo = ['El alto no puede estar vacio']
+          this.msg.largo = ['El largo no puede estar vacio']
           this.msg.type_box = ''
         }else if (newValue.ancho === '') {
           this.msg.ancho = ['El ancho no puede estar vacio']
