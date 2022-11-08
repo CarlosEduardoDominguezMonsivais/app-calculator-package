@@ -86,8 +86,8 @@ const packageSchema = mongoose.Schema(
                 //     message: 'Error_ancho_pliego_mm',
                 // },
             },
-            
-            data_fabricacion: {
+
+            fabricacion: {
                 type: Object,
                 required: true
             }

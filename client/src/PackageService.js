@@ -12,7 +12,8 @@ class PackageService {
         });
     }
 
-    static sendQuote(order) {
+    // send quotation
+    static sendQuotation(order) {
       const { user, quote } = order
       return axios.post(url2, {
         user, quote
