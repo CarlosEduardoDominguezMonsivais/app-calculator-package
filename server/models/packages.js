@@ -14,7 +14,19 @@ const packageSchema = mongoose.Schema(
                 type: String,
                 required: true
             },
-            address: {
+            phone: {
+                type: String,
+                required: true
+            },
+            suburb: {
+                type: String,
+                required: true
+            },
+            street: {
+                type: String,
+                required: true
+            },
+            postal_code: {
                 type: String,
                 required: true
             }

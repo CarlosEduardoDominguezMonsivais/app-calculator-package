@@ -204,34 +204,41 @@
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
               <div class="text-left">
-                <div class="grid gap-2 grid-cols-1">
+                <div class="grid gap-2 grid-cols-1 sm:grid-cols-6">
                   <div class="mt-4 col-span-6">
-                      <label for="name" value="Nombre *" />
                       <input id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="text" placeholder="Nombre" required v-model="user.name" />
                       <small class="text-red-400" v-if="errors_user.name">{{errors_user.name[0]}}</small>
                   </div>
                   <div class="mt-4 col-span-6">
-                      <label for="lastname" value="Apellido *" />
                       <input id="lastname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="text" placeholder="Apellido" required v-model="user.lastname" />
                       <small class="text-red-400" v-if="errors_user.lastname">{{errors_user.lastname[0]}}</small>
                   </div>  
-                  <div class="mt-4 col-span-6">
-                      <label for="email" value="Email *" />
+                  <div class="mt-4 col-span-6 sm:col-span-3">
                       <input id="eamil" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="email" placeholder="Correo electrónico" required v-model="user.email"/>
                       <small class="text-red-400" v-if="errors_user.email">{{errors_user.email[0]}}</small>
-                  </div>  
-                  <div class="mt-4 col-span-6">
-                      <label for="address" value="Dirección *" />
-                      <textarea id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="text" placeholder="Colonia, Calle, Número exterior" required v-model="user.address"></textarea>
-                      <small class="text-red-400" v-if="errors_user.address">{{errors_user.address[0]}}</small>
                   </div>
-                  <div class="col-span-5"></div>
-                  <div class="flex items-center justify-end pt-4">
+                  <div class="mt-4 col-span-6 sm:col-span-3">
+                      <input id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="tel" placeholder="Teléfono" required v-model="user.phone"/>
+                      <small class="text-red-400" v-if="errors_user.phone">{{errors_user.phone[0]}}</small>
+                  </div>  
+                  <div class="mt-4 col-span-6 sm:col-span-2">
+                      <input id="suburb" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="text" placeholder="Colonia" required v-model="user.suburb"/>
+                      <small class="text-red-400" v-if="errors_user.suburb">{{errors_user.suburb[0]}}</small>
+                  </div>
+                  <div class="mt-4 col-span-6 sm:col-span-2">
+                      <input id="street" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="text" placeholder="Calle y número exterior" required v-model="user.street"/>
+                      <small class="text-red-400" v-if="errors_user.street">{{errors_user.street[0]}}</small>
+                  </div>
+                  <div class="mt-4 col-span-6 sm:col-span-2">
+                      <input id="postal_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1" type="number" placeholder="Código postal" required v-model="user.postal_code"/>
+                      <small class="text-red-400" v-if="errors_user.postal_code">{{errors_user.postal_code[0]}}</small>
+                  </div>
+                </div>
+                <div class="flex items-center justify-end pt-4">
                     <button type="button"  class="ml-auto text-white border-0 py-2 px-8 focus:outline-none bg-blue-900 rounded" @click="sendQuoteCalculate">
                     <i class="fa-solid fa-paper-plane"></i> Enviar
                     </button>
                   </div>
-                </div>
               </div>
             </div>
             <div class="bg-white lg:block">
@@ -349,7 +356,8 @@ export default {
       },
 
       async sendQuoteCalculate() {
-        const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+        const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
         const order = {
           user: this.user,
           quote: this.quoteBox
@@ -371,8 +379,22 @@ export default {
             this.errors_user.email = ['El campo tiene que ser un email válido']
             return false
         }
-        if(!this.user.address) {
-          this.errors_user.address = ['El campo dirección es requerido']
+        if(!this.user.phone) {
+            this.errors_user.phone = ['El campo del teléfono es requerido']
+            return false
+        }
+        if(!phoneRegex.test(this.user.phone)){
+          this.errors_user.phone = ['El campo tiene que ser un teléfono válido']
+            return false
+        }
+        if(!this.user.suburb) {
+          this.errors_user.suburb = ['El campo de colonia es requerido']
+          return false
+        }if(!this.user.street) {
+          this.errors_user.street = ['El campo de calle es requerido']
+          return false
+        }  if(!this.user.postal_code) {
+          this.errors_user.postal_code = ['El campo de código postal es requerido']
           return false
         }else{
           await PackageService.sendQuotation(order)
