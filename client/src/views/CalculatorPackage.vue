@@ -275,9 +275,9 @@
             </div>
             <div class="bg-white lg:block">
                 <ul class="py-6 border-b space-y-6 px-8">
-                    <li class="grid grid-cols-6 gap-2 border-b-1">
+                    <li class="grid grid-cols-1 md:grid-cols-6 gap-2 border-b-1">
                         <div class="col-span-1 self-center">
-                            <img src="../assets/img/cajas-de-carton.webp" alt="Product" class="rounded w-full">
+                            <img src="../assets/img/cajas-de-carton.webp" alt="Product" class="rounded h-16 md:w-full">
                         </div>
                         <div class="flex flex-col col-span-2 pt-2">
                             <span class="text-gray-600 text-md font-semi-bold">Cajas de cartón</span>
