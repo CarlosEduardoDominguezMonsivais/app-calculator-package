@@ -1,5 +1,5 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden bg-gris-default">
+  <section class="text-gray-700 body-font overflow-hidden md:bg-gris-default">
     <div class="container px-5 md:py-24 mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="bg-white">
@@ -69,11 +69,20 @@
             especialmente diseñadas para envíos por paquetería, máxima
             protección a tus productos, reduce el riesgo de daño.
           </p>
-          <!-- <div v-for="error in this.errors" :key="error">
-            <div class="text-sm text-red-700 dark:text-red-800">
-                <i class="fa-solid fa-circle-info"></i> <span>{{ error.msg }}</span>
+          <div class="flex p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800" role="alert" v-if="msg.largo_pliego">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Alerta!</span> {{msg.largo_pliego[0]}}
             </div>
-          </div>      -->
+          </div>
+          <div class="flex p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800" role="alert" v-if="msg.ancho_pliego">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Alerta!</span> {{msg.ancho_pliego[0]}}
+            </div>
+          </div>
           <form>
             <div class="block">
               <div class="form-group mb-4">
@@ -188,7 +197,7 @@
               Seleccione el tipo de caja, el largo, el ancho y el alto para realizar la cotización  <i class="fa-solid fa-box text-gray-300"></i>
             </div>
           </div>
-          <div v-else>
+          <div class="overflow-x-auto" v-else>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -218,9 +227,9 @@
                 </tbody>
             </table>
             <div class="flex items-center py-8">
-              <button type="button" class="ml-auto text-white bg-blue-pp border-0 py-2 px-8 focus:outline-none bg-blue-900 rounded" @click="showQuoteCalculator">
+              <button type="button" class="ml-auto text-white bg-blue-pp border-0 py-2 px-8 focus:outline-none bg-blue-900 rounded" @click="showQuoteCalculator" v-if="Object.keys(msg).length === 0">
                   <i class="fa-solid fa-box"></i> Confirmar
-                </button>
+              </button>
             </div>
           </div>
         </div>
@@ -231,11 +240,6 @@
         <h2 class="text-xl">Enviar cotización</h2>
       </template>
       <template #content>
-          <div class="flex justify-between text-gray-600 text-sm mb-6">
-              <div class="flex items-center space-x-4">
-                  <!-- <span class="text-base">Numero de la orden: #{{products.number}}</span> -->
-              </div>
-          </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
               <div class="text-left">
@@ -307,34 +311,6 @@
                 </div>
             </div>
           </div>
-          <!-- <div class="pt-16 overflow-x-auto overflow-y-auto">
-                  <table class="table-auto w-full whitespace-nowrap">
-                    <thead class="text-left text-sm">
-                        <tr class="border-b border-gray-200">
-                            <th class="px-2 py-3">Cantidad de cajas minimas a fabricar</th>
-                            <th class="px-2">Costo por caja</th>
-                            <th class="px-2">Costo total de fabricación</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-xs">
-                        <tr v-for="item in products.items" :key="item.id" class="odd:bg-gray-50">
-                            <td class="px-2 py-3">{{item.sku}}</td>
-                            <td class="px-2">{{item.name}}</td>
-                            <td class="px-2">{{item.quantity}}</td>
-                            <td class="px-2">{{item.price}}</td>
-                            <td class="px-2" v-if ="item.total != null">{{item.total}}</td>
-                            <td class="px-2" v-else>{{item.price}}</td>
-                        </tr> 
-                    </tbody>
-                  </table>
-          </div> -->
-      </template>
-      <template #footer>
-          <!-- <div class="flex items-center justify-end">
-              <button type="button" class="ml-4" elementColor="bg-celeste-default text-white" @click="sendQuoteCalculate">
-                <span class="hidden sm:inline ml-2">Pagar</span>
-              </button>
-          </div> -->
       </template>
   </modal-calculator>
   </section>
@@ -367,6 +343,7 @@ export default {
       user: {},
       loading: false,
       quoteBox: {},
+      error: {}
     } 
   },
 
@@ -385,8 +362,20 @@ export default {
           this.msg.alto = ['El alto no puede estar vacio']
           this.msg.ancho = ''
         }else{
-        this.calculateQuotation(newValue)
-        this.msg = {}
+          const validacion_largo_pliego = this.lengthTotalSheetMilimeters(parseFloat(newValue.largo), parseFloat(newValue.ancho))
+          const validacion_ancho_pliego = this.widthTotalSheetMilimeters(parseFloat(newValue.ancho), parseFloat(newValue.alto))
+          if ( validacion_largo_pliego == 'El largo del pliego debe de ser menor') {
+            this.msg.largo_pliego = ['El largo del pliego debe de ser menor']
+          }else if (validacion_largo_pliego == 'El largo del pliego debe de ser mayor') {
+            this.msg.largo_pliego = ['El largo del pliego debe de ser mayor']
+          }else if(validacion_ancho_pliego == 'El ancho del pliego debe de ser menor') {
+            this.msg.ancho_pliego = ['El ancho del pliego debe de ser menor']
+          }else if (validacion_ancho_pliego == 'El ancho del pliego debe de ser mayor') {
+            this.msg.ancho_pliego = ['El ancho del pliego debe de ser mayor']
+          }else{
+            this.calculateQuotation(newValue)
+            this.msg = {}
+          }
         }
       },
       deep: true
@@ -464,14 +453,14 @@ export default {
                 alto, 
                 largo,
                 ancho,
+                largo_pliego_mm: this.lengthTotalSheetMilimeters(parseFloat(largo), parseFloat(ancho)),
+                ancho_pliego_mm: this.widthTotalSheetMilimeters(parseFloat(ancho), parseFloat(alto)),
                 costo_unitario_con_iva: this.priceWithIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 costo_unitario_sin_iva: this.priceWithoutIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 area: this.squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 peso_volumetrico: this.volumetricWeight(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
                 largo_pliego_cm: this.lengthTotalSheetCentimeters(parseFloat(largo), parseFloat(ancho)),
                 ancho_pliego_cm: this.widthTotalSheetCentimeters(parseFloat(ancho), parseFloat(alto)),
-                largo_pliego_mm: this.lengthTotalSheetMilimeters(parseFloat(largo), parseFloat(ancho)),
-                ancho_pliego_mm: this.widthTotalSheetMilimeters(parseFloat(ancho), parseFloat(alto)),
                 fabricacion: this.miniManufacturing(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho))
             }
           const { fabricacion } =  this.quoteBox
@@ -492,19 +481,17 @@ export default {
           const largo2_pliego = ((ancho * 10) + largo2_extra)
           const length_total_sheet_milimeters = ((largo1_pliego * 2 ) + (largo2_pliego * 2)) + largo_ceja
           if ( length_total_sheet_milimeters > 2900 ) {
-              console.log({ error:"El largo del pliego debe de ser menor" });
+            return this.error = "El largo del pliego debe de ser menor"
               // Swal.fire({
               //   title: `El largo del pliego debe de ser menor`,
               //   icon: "error",
               // })
-              return Object.entries(this.quoteBox).length === 0
           }else if (length_total_sheet_milimeters < 900 ) {
-              console.log({ error:"El largo del pliego debe de ser mayor" });
+            return this.error = "El largo del pliego debe de ser mayor" 
               // Swal.fire({
               //   title: `El largo del pliego debe de ser mayor`,
               //   icon: "error",
               // })
-              return Object.entries(this.quoteBox).length === 0
           }else{
               const data_length_total_sheet_milimeters = {
                   largo1_pliego,
@@ -523,19 +510,17 @@ export default {
           const ancho2_pliego = ((ancho * 5) + 4)
           const width_total_sheet_milimeters = ancho1_pliego + (ancho2_pliego * 2)
           if ( width_total_sheet_milimeters > 1400 ) {
-            console.log({ error:"El ancho del pliego debe de ser menor" });
+            return this.error = "El ancho del pliego debe de ser menor"
             // Swal.fire({
             //   title: `El ancho del pliego debe de ser menor`,
             //   icon: "error",
             // })
-            return Object.entries(this.quoteBox).length === 0
           }else if ( width_total_sheet_milimeters < 400 ) {
-            console.log({ error:"El ancho del pliego debe de ser mayor" });
+            return this.error = "El ancho del pliego debe de ser mayor" 
             // Swal.fire({
             //   title: `El ancho del pliego debe de ser mayor`,
             //   icon: "error",
             // })
-            return Object.entries(this.quoteBox).length === 0
           }else{
               const data_length_total_sheet_milimeters = {
                   ancho1_pliego,
