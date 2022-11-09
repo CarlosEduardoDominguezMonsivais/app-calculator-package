@@ -150,47 +150,8 @@
                     <small class="text-red-400" v-if="msg.alto">{{msg.alto[0]}}</small>
                   </div>
                 </div>
-                <!-- <label class="form-label inline-block mb-2 text-gray-700">Largo</label>
-                <input type="number" step="any" id="largo" name="largo"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-                  v-model="quote.largo"/>
-                  <div class="text-sm text-red-700 dark:text-red-800">
-                    <span>{{ validationMessage('largo') }}</span>
-                  </div>
-              </div> -->
-              <!-- <div class="form-group mb-4">
-                <label class="form-label inline-block mb-2 text-gray-700">Ancho</label>
-                <input type="number" step="any" id="ancho" name="ancho"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-                  v-model="quote.ancho"/>
-                  <div class="text-sm text-red-700 dark:text-red-800">
-                    <span>{{ validationMessage('ancho') }}</span>
-                  </div>
-              </div>
-              <div class="form-group mb-4">
-                <label class="form-label inline-block mb-2 text-gray-700">Altura</label>
-                <input type="number" step="any" id="alto" name="alto"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-                  v-model="quote.alto"/>
-                  <div class="text-sm text-red-700 dark:text-red-800">
-                    <span>{{ validationMessage('alto') }}</span>
-                  </div> -->
               </div>
             </div>
-            <!-- <div class="flex items-center py-8"> -->
-                <!-- <label class="form-label mr-4 text-gray-700">Cantidad: </label> -->
-              <!--<div class="flex flex-row h-10 w-32 rounded-lg relative bg-transparent mt-1"> -->
-                <!-- <button data-action="decrement" class="bg-gris-default text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto text-2xl font-thin">−</span>
-                </button> -->
-                <!-- <vue-number-input  :model-value="0" inline center controls v-model="quote.cantidad"></vue-number-input> -->
-                <!-- <button data-action="increment" class="bg-gris-default text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-r cursor-pointer">
-                <span class="m-auto text-2xl font-thin">+</span>
-                </button> -->
-              <!-- </div> -->
-              <!-- <input type="number" name="cantidad" id="cantidad" class="form-control px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                v-model="quote.cantidad" />-->
-            <!-- </div> -->
           </form>
           <div v-if="Object.keys(quote_manufacturing).length === 0">
             <div class="py-12 text-center md:text-xl">
@@ -416,8 +377,8 @@ export default {
         }else{
           await PackageService.sendQuotation(order)
         .then(response => {
-          console.log(response)
             // const quote = response.data.boxes
+            console.log(response)
             Swal.fire({
             title: "¡Se ha enviado la contización!",
             icon: "success",
@@ -469,7 +430,6 @@ export default {
                 fabricacion: this.miniManufacturing(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho))
             }
           const { fabricacion } =  this.quoteBox
-          console.log(this.quoteBox)
           this.quote_manufacturing = fabricacion
       },
 
@@ -487,16 +447,8 @@ export default {
           const length_total_sheet_milimeters = ((largo1_pliego * 2 ) + (largo2_pliego * 2)) + largo_ceja
           if ( length_total_sheet_milimeters > 2900 ) {
             return this.error = "El largo del pliego debe de ser menor"
-              // Swal.fire({
-              //   title: `El largo del pliego debe de ser menor`,
-              //   icon: "error",
-              // })
           }else if (length_total_sheet_milimeters < 900 ) {
             return this.error = "El largo del pliego debe de ser mayor" 
-              // Swal.fire({
-              //   title: `El largo del pliego debe de ser mayor`,
-              //   icon: "error",
-              // })
           }else{
               const data_length_total_sheet_milimeters = {
                   largo1_pliego,
@@ -516,16 +468,8 @@ export default {
           const width_total_sheet_milimeters = ancho1_pliego + (ancho2_pliego * 2)
           if ( width_total_sheet_milimeters > 1400 ) {
             return this.error = "El ancho del pliego debe de ser menor"
-            // Swal.fire({
-            //   title: `El ancho del pliego debe de ser menor`,
-            //   icon: "error",
-            // })
           }else if ( width_total_sheet_milimeters < 400 ) {
             return this.error = "El ancho del pliego debe de ser mayor" 
-            // Swal.fire({
-            //   title: `El ancho del pliego debe de ser mayor`,
-            //   icon: "error",
-            // })
           }else{
               const data_length_total_sheet_milimeters = {
                   ancho1_pliego,
