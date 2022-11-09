@@ -298,7 +298,7 @@
                 <div class="px-8 border-b">
                     <div class="flex justify-between py-4 text-gray-600">
                         <span>Cantidad de cajas</span>
-                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_boxes}}</span>
+                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_minimo_boxes}}</span>
                     </div>
                     <div class="flex justify-between py-4 text-gray-600">
                         <span>Costo total</span>
