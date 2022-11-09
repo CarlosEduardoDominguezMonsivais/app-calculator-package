@@ -85,7 +85,7 @@
           </div>
           <form>
             <div class="block">
-              <div class="form-group mb-4">
+              <div class="form-group my-6">
                 <label class="form-label inline-block mb-2 text-gray-700">Tipo de Caja</label>
                 <div class="relative">
                   <select id="type_box" name="type_box"
@@ -108,8 +108,8 @@
                   </span>
                 </div>
               </div>
-              <div class="form-group mb-4">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-8">
+              <div class="form-group">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-6">
                   <div>
                     <div class="flex">
                       <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
