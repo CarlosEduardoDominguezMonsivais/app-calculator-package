@@ -6,7 +6,7 @@
         <img alt="ecommerce" class="w-full object-cover object-center"
           src="../assets/img/cajas-de-carton.webp" />
         </div>
-        <div class="bg-white px-12 py-8">
+        <div class="bg-white px-4 md:px-12 py-8">
           <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
             Cotizador de cajas de cartón
           </h1>
