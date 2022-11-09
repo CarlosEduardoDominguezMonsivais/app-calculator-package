@@ -388,6 +388,7 @@ export default {
       },
 
       async sendQuoteCalculate() {
+        const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
         const order = {
           user: this.user,
           quote: this.quoteBox
@@ -404,6 +405,10 @@ export default {
         if(!this.user.email) {
           this.errors_user.email = ['El campo email es requerido']
           return false
+        }
+        if(!emailRegex.test(this.user.email)) {
+            this.errors_user.email = ['El campo tiene que ser un email válido']
+            return false
         }
         if(!this.user.address) {
           this.errors_user.address = ['El campo dirección es requerido']
