@@ -192,26 +192,26 @@ class MainController {
         try {
         const data =  req.body;
         const valores = await packageSchema.create(data)
-        const { user, quote } = valores
-        const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
-        const filename = Math.random() + '_doc' + '.pdf';
-        var document = {
-            html: html,
-            data: {
-                user,
-                quote
-            },
-            path: './docs/' + filename,
-            type: "",
-        };
+        // const { user, quote } = valores
+        // const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
+        // const filename = Math.random() + '_doc' + '.pdf';
+        // var document = {
+        //     html: html,
+        //     data: {
+        //         user,
+        //         quote
+        //     },
+        //     path: './docs/' + filename,
+        //     type: "",
+        // };
 
-        pdf.create(document, pdfConfig)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        // pdf.create(document, pdfConfig)
+        //     .then((res) => {
+        //         console.log(res);
+        //     })
+        //     .catch((error) => {
+        //         console.error(error);
+        //     });
             emailer.sendMail(valores)
             res.status(201).send({ data })
         }

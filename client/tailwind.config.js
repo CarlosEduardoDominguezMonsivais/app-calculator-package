@@ -8,14 +8,18 @@ module.exports = {
         },
         colors:{
           azul: {
-              default: '#0B4F7C',
+              default: '#0B4F7C'
           },
           gris: {
-            default: '#F3F5F6',
+            default: '#F3F5F6'
           },
           celeste:{
             default: '#33D9E2'
+          },
+          amarillo: {
+            default: '#FFC23D'
           }
+
         }
     }
   },

@@ -13,31 +13,31 @@
           <div class="flex mb-4">
             <span class="flex items-center">
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" class="w-4 h-4 text-yellow-pp" viewBox="0 0 24 24">
+                stroke-width="2" class="w-4 h-4 text-amarillo-default" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" class="w-4 h-4 text-yellow-pp" viewBox="0 0 24 24">
+                stroke-width="2" class="w-4 h-4 text-amarillo-default" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" class="w-4 h-4 text-yellow-pp" viewBox="0 0 24 24">
+                stroke-width="2" class="w-4 h-4 text-amarillo-default" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" class="w-4 h-4 text-yellow-pp" viewBox="0 0 24 24">
+                stroke-width="2" class="w-4 h-4 text-amarillo-default" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                class="w-4 h-4 text-yellow-pp" viewBox="0 0 24 24">
+                class="w-4 h-4 text-amarillo-default" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
-              <span class="text-gray-600 ml-3">4 Reviews</span>
+              <span class="text-gray-600 ml-3">124 Reviews</span>
             </span>
             <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
               <a href="https://www.facebook.com/parapaquetes" target="_blank" class="text-gray-500">
@@ -176,7 +176,7 @@
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          {{this.quote_manufacturing.fabricacion_minimo_boxes}}
+                          {{this.quote_manufacturing.fabricacion_minimo_boxes}} pza
                         </th>
                         <td class="py-4 px-6">
                           {{this.quote_manufacturing.precio_unitario_con_iva}}
@@ -258,7 +258,7 @@
                             </div>
                             <div class="flex items-center space-x-2 text-sm justify-between">
                                 <span class="text-gray-400">{{this.quoteBox.largo}} x <span> {{this.quoteBox.ancho}} x <span> {{this.quoteBox.alto}}</span></span> </span>
-                                <span class="text-blue-pp font-semibold inline-block">$ {{this.quote_manufacturing.precio_unitario_con_iva}}<span class="text-xs"> con iva</span></span>
+                                <span class="text-blue-pp font-semibold inline-block">{{this.quote_manufacturing.precio_unitario_con_iva}}<span class="text-xs"> con iva</span></span>
                             </div>
                         </div>
                     </li>
@@ -266,16 +266,16 @@
                 <div class="px-4 sm:px-8 border-b">
                     <div class="flex justify-between py-4 text-gray-600">
                         <span>Cantidad de cajas</span>
-                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_minimo_boxes}}</span>
+                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.fabricacion_minimo_boxes}} pza</span>
                     </div>
                     <div class="flex justify-between py-4 text-gray-600">
                         <span>Costo total</span>
-                        <span class="font-semibold text-blue-pp">$ {{this.quote_manufacturing.costo_total_con_iva}} <span class="text-xs"> con iva</span></span>
+                        <span class="font-semibold text-blue-pp">{{this.quote_manufacturing.costo_total_con_iva}} <span class="text-xs"> con iva</span></span>
                     </div>
                 </div>
                 <div class="font-semibold text-xl px-4 sm:px-8 flex justify-between py-8 text-gray-600">
                     <span>Precio total</span>
-                    <span>$ {{this.quote_manufacturing.precio_total_con_iva}} <span class="text-xs"> con iva</span></span>
+                    <span>{{this.quote_manufacturing.precio_total_con_iva}} <span class="text-xs"> con iva</span></span>
                 </div>
             </div>
           </div>
@@ -403,8 +403,8 @@ export default {
             console.log(response)
             Swal.fire({
             title: "¡Tu solicitud ha sido enviada exitosamente!",
-            text: 'En las siguientes 24 horas hábiles un ejecutivo de ventas se comunicará para darle seguimiento a tu solicitud.',
-            footer: 'Para cualquier duda o comentario, <a href="https://parapaquetes.com/pages/contacto" target="_blank" style="font-weight: 700; padding-left: 2px; padding-right: 2px;"> haz click aqui </a> para contactarnos.',
+            text: 'En las siguientes 24 horas hábiles un ejecutivo de ventas se comunicará para darle seguimiento a tu solicitud.',            
+            footer: '<a href="https://parapaquetes.com/pages/contacto" target="_blank" style="font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-align: center;"> Para cualquier duda o comentario, haz click aqui para contactarnos</a>',
             icon: "success",
           })
           this.toogleModal = false
@@ -548,13 +548,17 @@ export default {
               fabricacion_minimo_boxes_menos_10_porciento,
               fabricacion_minimo_boxes_mas_10_porciento,
               costo_total_sin_iva,
-              costo_total_con_iva,
-              precio_total_con_iva,
+              costo_total_con_iva: this.formartCurrency(costo_total_con_iva),
+              precio_total_con_iva: this.formartCurrency(precio_total_con_iva),
               precio_total_con_iva_menos_10_porciento,
               precio_total_con_iva_mas_10_porciento,
-              precio_unitario_con_iva
+              precio_unitario_con_iva: this.formartCurrency(precio_unitario_con_iva)
           }
           return data_minimum_manufacturing
+      },
+
+      formartCurrency(number) {
+        return new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'USD', minimumFractionDigits: 2}).format(number);
       }
   }
 }

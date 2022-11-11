@@ -2,14 +2,22 @@ const nodemailer = require('nodemailer');
 
 //configurate mailer
 const createTransport = () => {
-    var transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-            user: "baa26e4a94e561",
-            pass: "49d606ba155f28"
-        }
-    });
+    // var transport = nodemailer.createTransport({
+    //     host: "smtp.mailtrap.io",
+    //     port: 2525,
+    //     auth: {
+    //         user: "baa26e4a94e561",
+    //         pass: "49d606ba155f28"
+    //     }
+    // });
+    var transport = nodemailer.createTransport({ 
+        host: 'smtp.gmail.com', 
+        port: 587, 
+        auth: { 
+          user: 'programacion1@parapaquetes.com', 
+          pass: 'mldrloyelhasxzuf_', 
+        }, 
+      });
     return transport;
 }
 
