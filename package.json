@@ -20,6 +20,7 @@
     "liquidjs": "^9.42.1",
     "mongoose": "^6.6.5",
     "nodemailer": "^6.8.0",
+    "pdf-creator-node": "^2.3.5",
     "postcss": "^8.4.18",
     "postcss-cli": "^10.0.0"
   },

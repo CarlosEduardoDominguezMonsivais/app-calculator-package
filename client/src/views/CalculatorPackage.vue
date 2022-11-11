@@ -402,7 +402,9 @@ export default {
             // const quote = response.data.boxes
             console.log(response)
             Swal.fire({
-            title: "¡Se ha enviado la contización!",
+            title: "¡Tu solicitud ha sido enviada exitosamente!",
+            text: 'En las siguientes 24 horas hábiles un ejecutivo de ventas se comunicará para darle seguimiento a tu solicitud.',
+            footer: 'Para cualquier duda o comentario, <a href="https://parapaquetes.com/pages/contacto" target="_blank" style="font-weight: 700; padding-left: 2px; padding-right: 2px;"> haz click aqui </a> para contactarnos.',
             icon: "success",
           })
           this.toogleModal = false

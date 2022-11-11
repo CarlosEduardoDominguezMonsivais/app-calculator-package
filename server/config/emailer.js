@@ -18,7 +18,7 @@ const sendMail = async (data) => {
     const transporter = createTransport()
     const info = await transporter.sendMail({
         from: `"${user.name} " <${user.email}>"`,
-        to: ['info@info.com', 'carlos1726257@gmail.com'],
+        to: ['ventas2@parapaquetes.com', 'carlos1726257@gmail.com'],
         subject: 'Cotizacion a mayoreo',
         html: `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

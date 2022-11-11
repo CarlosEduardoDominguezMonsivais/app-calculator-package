@@ -1,7 +1,11 @@
 'use strict';
 const packageSchema = require("../models/packages");
+const fs = require('fs');
 const { errorHttpHelper } = require("../helpers/errorHelper");
 const emailer = require("../config/emailer");
+const pdf = require('pdf-creator-node');
+const path = require('path');
+const pdfConfig = require('../helpers/pdfConfigHelper');
 
 class MainController {
     index(_req, res) {
@@ -186,8 +190,28 @@ class MainController {
 
     async sendQuote(req, res) {
         try {
-            const data =  req.body;
-            const valores = await packageSchema.create(data)
+        const data =  req.body;
+        const valores = await packageSchema.create(data)
+        const { user, quote } = valores
+        const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
+        const filename = Math.random() + '_doc' + '.pdf';
+        var document = {
+            html: html,
+            data: {
+                user,
+                quote
+            },
+            path: './docs/' + filename,
+            type: "",
+        };
+
+        pdf.create(document, pdfConfig)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
             emailer.sendMail(valores)
             res.status(201).send({ data })
         }
@@ -195,6 +219,27 @@ class MainController {
             console.log(error)
         }
     }
+
+    // generatePdf(req, res) {
+    //     const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
+    //     const filename = Math.random() + '_doc' + '.pdf';
+    //     var document = {
+    //         html: html,
+    //         data: {
+    //             valores,
+    //         },
+    //         path: filename,
+    //         type: "",
+    //     };
+
+    //     pdf.create(document, options)
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((error) => {
+    //             console.error(error);
+    //         });
+    // }
 
 }
 
