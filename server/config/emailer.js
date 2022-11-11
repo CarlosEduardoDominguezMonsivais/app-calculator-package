@@ -15,7 +15,7 @@ const createTransport = () => {
         port: 587, 
         auth: { 
           user: 'programacion1@parapaquetes.com', 
-          pass: 'mldrloyelhasxzuf_', 
+          pass: 'c y x t b d g z k z s k b y s c', 
         }, 
       });
     return transport;
