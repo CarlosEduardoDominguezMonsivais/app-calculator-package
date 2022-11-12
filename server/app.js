@@ -32,7 +32,7 @@ Object.keys(routes).forEach(attr => {
 dbConnect()
 
 //Handle production
-if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'production') {
     //Static folder
     app.use(express.static(__dirname + '/public/'));
     //Handle SPA
