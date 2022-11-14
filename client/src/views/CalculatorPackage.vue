@@ -109,7 +109,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-x-8 gap-y-6">
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-x-4 gap-y-6">
                   <div>
                     <div class="flex">
                       <span class="inline-flex items-center px-3 text-xs text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
