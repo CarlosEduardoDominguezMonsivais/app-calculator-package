@@ -92,11 +92,23 @@
                     class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     aria-label="Default select example"
                     v-model="quote.type_box">
-                    <option value="26_ects_C" selected>26 ECTs C</option>
-                    <option value="32_ects_C">32 ECTs C</option>
-                    <option value="36_ects_BC">36 ECTs BC</option>
-                    <option value="48_ects_BC">48 ECTs BC</option>
-                    <option value="61_ects_BC">61 ECTs BC</option>
+                    <option value="sg_C" selected>SG C KRAFT</option>
+                    <option value="21_ects_C">21 ECTs C KRAFT</option>
+                    <option value="23_ects_C">23 ECTs C KRAFT</option>
+                    <option value="26_ects_C">26 ECTs C KRAFT</option>
+                    <option value="29_ects_C">29 ECTs C KRAFT</option>
+                    <option value="32_ects_C">32 ECTs C KRAFT</option>
+                    <option value="40_ects_C">40 ECTs C KRAFT</option>
+                    <option value="44_ects_C">44 ECTs C KRAFT</option>
+                    <option value="55_ects_C">55 ECTs C KRAFT</option>
+                    <option value="36_ects_BC">36 ECTs BC KRAFT</option>
+                    <option value="42_ects_BC">42 ECTs BC KRAFT</option>
+                    <option value="48_ects_BC">48 ECTs BC KRAFT</option>
+                    <option value="51_ects_BC">51 ECTs BC KRAFT</option>
+                    <option value="61_ects_BC">61 ECTs BC KRAFT</option>
+                    <option value="71_ects_BC">71 ECTs BC KRAFT</option>
+                    <option value="26_ects_E">26 ECTs E KRAFT</option>
+                    <option value="29_ects_E">29 ECTs E KRAFT</option>
                   </select>
                   <small class="text-red-400" v-if="msg.type_box">{{msg.type_box[0]}}</small>
                   <span
@@ -331,7 +343,6 @@ export default {
           this.msg.type_box = ['El tipo de caja es obligatorio caja']
         }else if (newValue.largo === '') {
           this.msg.largo = ['El largo no puede estar vacio']
-          this.msg.type_box = ''
         }else if (newValue.ancho === '') {
           this.msg.ancho = ['El ancho no puede estar vacio']
           this.msg.largo = ''
@@ -430,28 +441,68 @@ export default {
       calculateQuotation({type_box, alto, largo, ancho}) {
         let type_box_value;
             switch (type_box) {
-                case '26_ects_C': 
-                    type_box_value = 16.41;
-                break;
-                case '32_ects_C': 
-                    type_box_value= 19.11;
-                break;
-                case '36_ects_BC': 
-                    type_box_value= 23.54;
-                break;
-                case '48_ects_BC': 
-                    type_box_value= 28.18;
-                break;
-                case '61_ects_BC': 
-                    type_box_value= 34.88;
-                break;
+              case 'sg_C': 
+                    type_box_value = 13.15;
+              break;
+              case '21_ects_C': 
+                    type_box_value = 14.67;
+              break;
+              case '23_ects_C': 
+                    type_box_value = 15.39;
+              break;
+              case '26_ects_C': 
+                  type_box_value = 16.41;
+              break;
+              case '29_ects_C': 
+                  type_box_value = 17.69;
+              break;
+              case '32_ects_C': 
+                  type_box_value= 19.11;
+              break;
+              case '40_ects_C': 
+                  type_box_value= 21.15;
+              break;
+              case '44_ects_C': 
+                  type_box_value= 23.65;
+              break;
+              case '55_ects_C': 
+                  type_box_value= 29.61;
+              break;
+              case '36_ects_BC': 
+                  type_box_value= 23.54;
+              break;
+              case '42_ects_BC': 
+                  type_box_value= 26.28;
+              break;
+              case '48_ects_BC': 
+                  type_box_value= 28.18;
+              break;
+              case '51_ects_BC': 
+                  type_box_value= 29.53;
+              break;
+              case '61_ects_BC': 
+                  type_box_value= 34.88;
+              break;
+              case '71_ects_BC': 
+                  type_box_value= 38.91;
+              break;
+              case '26_ects_E': 
+                  type_box_value= 20.06;
+              break;
+              case '29_ects_E': 
+                  type_box_value= 22.92;
+              break;
           }
           this.quoteBox =  {
+                date: this.currentDate(),
                 type_box, 
                 type_box_value,
                 alto, 
                 largo,
                 ancho,
+                alto_mm: alto * 10,
+                ancho_mm: ancho * 10,
+                largo_mm: largo * 10,
                 largo_pliego_mm: this.lengthTotalSheetMilimeters(parseFloat(largo), parseFloat(ancho)),
                 ancho_pliego_mm: this.widthTotalSheetMilimeters(parseFloat(ancho), parseFloat(alto)),
                 costo_unitario_con_iva: this.priceWithIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
@@ -469,105 +520,117 @@ export default {
       lengthTotalSheetCentimeters(largo, ancho) {
             const largo_total_pliego = ((largo * 2)+(ancho * 2)+ 6)
             return largo_total_pliego
-        },
-        
-        lengthTotalSheetMilimeters(largo, ancho) {
-          const largo1_extra = 5
-          const largo2_extra = 3
-          const largo_ceja = 35
-          const largo1_pliego = ((largo * 10) +  largo1_extra)
-          const largo2_pliego = ((ancho * 10) + largo2_extra)
-          const length_total_sheet_milimeters = ((largo1_pliego * 2 ) + (largo2_pliego * 2)) + largo_ceja
-          if ( length_total_sheet_milimeters > 2900 ) {
-            return this.error = "El largo del pliego debe de ser menor"
-          }else if (length_total_sheet_milimeters < 900 ) {
-            return this.error = "El largo del pliego debe de ser mayor" 
-          }else{
-              const data_length_total_sheet_milimeters = {
-                  largo1_pliego,
-                  largo2_pliego,
-                  largo1_extra,
-                  largo2_extra,
-                  largo_ceja,
-                  length_total_sheet_milimeters
-              }
-              return data_length_total_sheet_milimeters
-          }
-        },
-        
-        widthTotalSheetMilimeters(ancho, alto) {
-          const ancho1_pliego = ((alto * 10) +  9)
-          const ancho2_pliego = ((ancho * 5) + 4)
-          const width_total_sheet_milimeters = ancho1_pliego + (ancho2_pliego * 2)
-          if ( width_total_sheet_milimeters > 1400 ) {
-            return this.error = "El ancho del pliego debe de ser menor"
-          }else if ( width_total_sheet_milimeters < 400 ) {
-            return this.error = "El ancho del pliego debe de ser mayor" 
-          }else{
-              const data_length_total_sheet_milimeters = {
-                  ancho1_pliego,
-                  ancho2_pliego,
-                  width_total_sheet_milimeters
-              }
-              return data_length_total_sheet_milimeters
-          }
-        },
-        
-        widthTotalSheetCentimeters(ancho, alto) {
-            const ancho_total_pliego = ancho + alto + 3
-            return ancho_total_pliego
-        },
-        
-        priceWithIVA(type_box_value, alto, largo, ancho) {
-            var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value)) * 1.16);
-            return price_with_iva.toFixed(2)
-        },
-        
-        priceWithoutIVA(type_box_value, alto, largo, ancho) {
-            var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value));
-            return price_without_iva.toFixed(2)
-        },
-        
-        squareArea(alto, largo, ancho) {
-            var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((ancho*10)+8)))/1000000);
-            return square_area
-        },
-        
-        volumetricWeight(alto, largo, ancho) {
-            var volumetric_weight = (largo * ancho * alto)/ 5000;
-            return `${parseInt(volumetric_weight)}`
-        },
-
-        miniManufacturing(type_box_value, alto, largo, ancho) {
-          const area = this.squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
-          margen = 0.20,
-          costo_sin_iva =  this.priceWithoutIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
-          fabricacion_minimo_boxes = Math.ceil(1500 / area),
-          fabricacion_minimo_boxes_menos_10_porciento = Math.ceil(fabricacion_minimo_boxes * 0.9),
-          fabricacion_minimo_boxes_mas_10_porciento =  Math.ceil(fabricacion_minimo_boxes * 1.1),
-          costo_total_sin_iva = (fabricacion_minimo_boxes * costo_sin_iva).toFixed(2),
-          costo_total_con_iva = (costo_total_sin_iva * 1.16).toFixed(2),
-          precio_total_con_iva = (costo_total_con_iva / (1 - margen)).toFixed(2),
-          precio_total_con_iva_menos_10_porciento = precio_total_con_iva * 0.9,
-          precio_total_con_iva_mas_10_porciento = precio_total_con_iva * 1.1,
-          precio_unitario_con_iva = (precio_total_con_iva / fabricacion_minimo_boxes).toFixed(2)
+      },
       
-          const data_minimum_manufacturing = {
-              fabricacion_minimo_boxes,
-              fabricacion_minimo_boxes_menos_10_porciento,
-              fabricacion_minimo_boxes_mas_10_porciento,
-              costo_total_sin_iva,
-              costo_total_con_iva: this.formartCurrency(costo_total_con_iva),
-              precio_total_con_iva: this.formartCurrency(precio_total_con_iva),
-              precio_total_con_iva_menos_10_porciento,
-              precio_total_con_iva_mas_10_porciento,
-              precio_unitario_con_iva: this.formartCurrency(precio_unitario_con_iva)
-          }
-          return data_minimum_manufacturing
+      lengthTotalSheetMilimeters(largo, ancho) {
+        const largo1_extra = 5
+        const largo2_extra = 3
+        const largo_ceja = 35
+        const largo1_pliego = ((largo * 10) +  largo1_extra)
+        const largo2_pliego = ((ancho * 10) + largo2_extra)
+        const length_total_sheet_milimeters = ((largo1_pliego * 2 ) + (largo2_pliego * 2)) + largo_ceja
+        if ( length_total_sheet_milimeters > 2900 ) {
+          return this.error = "El largo del pliego debe de ser menor"
+        }else if (length_total_sheet_milimeters < 900 ) {
+          return this.error = "El largo del pliego debe de ser mayor" 
+        }else{
+            const data_length_total_sheet_milimeters = {
+                largo1_pliego,
+                largo2_pliego,
+                largo1_extra,
+                largo2_extra,
+                largo_ceja,
+                length_total_sheet_milimeters
+            }
+            return data_length_total_sheet_milimeters
+        }
+      },
+        
+      widthTotalSheetMilimeters(ancho, alto) {
+        const ancho1_pliego = ((alto * 10) +  9)
+        const ancho2_pliego = ((ancho * 5) + 4)
+        const width_total_sheet_milimeters = ancho1_pliego + (ancho2_pliego * 2)
+        if ( width_total_sheet_milimeters > 1400 ) {
+          return this.error = "El ancho del pliego debe de ser menor"
+        }else if ( width_total_sheet_milimeters < 400 ) {
+          return this.error = "El ancho del pliego debe de ser mayor" 
+        }else{
+            const data_length_total_sheet_milimeters = {
+                ancho1_pliego,
+                ancho2_pliego,
+                width_total_sheet_milimeters
+            }
+            return data_length_total_sheet_milimeters
+        }
+      },
+      
+      widthTotalSheetCentimeters(ancho, alto) {
+          const ancho_total_pliego = ancho + alto + 3
+          return ancho_total_pliego
+      },
+      
+      priceWithIVA(type_box_value, alto, largo, ancho) {
+          var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value)) * 1.16);
+          return price_with_iva.toFixed(2)
+      },
+      
+      priceWithoutIVA(type_box_value, alto, largo, ancho) {
+          var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value));
+          return price_without_iva.toFixed(2)
+      },
+      
+      squareArea(alto, largo, ancho) {
+          var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((ancho*10)+8)))/1000000);
+          return square_area
+      },
+      
+      volumetricWeight(alto, largo, ancho) {
+          var volumetric_weight = (largo * ancho * alto)/ 5000;
+          return `${parseInt(volumetric_weight)}`
+      },
+
+      miniManufacturing(type_box_value, alto, largo, ancho) {
+        const area = this.squareArea(parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
+        margen = 0.20,
+        costo_sin_iva =  this.priceWithoutIVA(type_box_value, parseFloat(alto), parseFloat(largo), parseFloat(ancho)),
+        fabricacion_minimo_boxes = Math.ceil(1500 / area),
+        fabricacion_minimo_boxes_menos_10_porciento = Math.ceil(fabricacion_minimo_boxes * 0.9),
+        fabricacion_minimo_boxes_mas_10_porciento =  Math.ceil(fabricacion_minimo_boxes * 1.1),
+        costo_total_sin_iva = (fabricacion_minimo_boxes * costo_sin_iva).toFixed(2),
+        costo_total_con_iva = (costo_total_sin_iva * 1.16).toFixed(2),
+        precio_total_con_iva = (costo_total_con_iva / (1 - margen)).toFixed(2),
+        precio_total_sin_iva = (costo_total_sin_iva / (1 - margen)).toFixed(2),
+        iva = precio_total_con_iva - precio_total_sin_iva,
+        precio_total_con_iva_menos_10_porciento = precio_total_con_iva * 0.9,
+        precio_total_con_iva_mas_10_porciento = precio_total_con_iva * 1.1,
+        precio_unitario_con_iva = (precio_total_con_iva / fabricacion_minimo_boxes).toFixed(2),
+        precio_unitario_sin_iva = (precio_total_sin_iva / fabricacion_minimo_boxes).toFixed(2)
+    
+        const data_minimum_manufacturing = {
+            fabricacion_minimo_boxes,
+            fabricacion_minimo_boxes_menos_10_porciento,
+            fabricacion_minimo_boxes_mas_10_porciento,
+            costo_total_sin_iva,
+            costo_total_con_iva: this.formartCurrency(costo_total_con_iva),
+            precio_total_con_iva: this.formartCurrency(precio_total_con_iva),
+            precio_total_sin_iva: this.formartCurrency(precio_total_sin_iva),
+            iva: this.formartCurrency(iva),
+            precio_total_con_iva_menos_10_porciento,
+            precio_total_con_iva_mas_10_porciento,
+            precio_unitario_con_iva: this.formartCurrency(precio_unitario_con_iva),
+            precio_unitario_sin_iva: this.formartCurrency(precio_unitario_sin_iva)
+        }
+        return data_minimum_manufacturing
       },
 
       formartCurrency(number) {
         return new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'USD', minimumFractionDigits: 2}).format(number);
+      },
+
+      currentDate() {
+        const fecha = new Date();
+        const hoy = fecha.toLocaleDateString() 
+        return hoy;
       }
   }
 }

@@ -1,4 +1,21 @@
 const mongoose = require('mongoose');
+
+// const countersSchema = mongoose.Schema({
+//         _id : {
+//             type: String,
+//             default: "item_id"
+//          },  
+//         valor_secuencia: {
+//             type: Number,
+//             default: 0
+//         }
+//     })
+// const Counters = mongoose.model('Counters', countersSchema);
+
+// Counters.createCollection().then(function(collection) {
+//   console.log('Collection is created!');
+// });
+
 const packageSchema = mongoose.Schema(
     {
         user: {
@@ -31,7 +48,12 @@ const packageSchema = mongoose.Schema(
                 required: true
             }
         },
+
         quote: {
+            date: {
+                type: String,
+                required: true 
+            },
             type_box: {
                 type: String,
                 required: true 
@@ -49,6 +71,18 @@ const packageSchema = mongoose.Schema(
                 required: true
             },
             alto: {
+                type: Number,
+                required: true
+            },
+            alto_mm: {
+                type: Number,
+                required: true
+            },
+            largo_mm: {
+                type: Number,
+                required: true
+            },
+            ancho_mm: {
                 type: Number,
                 required: true
             },
@@ -103,7 +137,11 @@ const packageSchema = mongoose.Schema(
                 type: Object,
                 required: true
             }
-        }
+        },
+
+        // sku: {
+        //     type: Number
+        // }
     },
     {
         timestamps: true, //createAt, updateat
@@ -111,4 +149,8 @@ const packageSchema = mongoose.Schema(
     }
 )
 
+
+
+
 module.exports = mongoose.model('Packages', packageSchema);
+
