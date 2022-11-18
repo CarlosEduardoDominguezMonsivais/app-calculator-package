@@ -179,7 +179,7 @@
               Seleccione el tipo de caja, el largo, el ancho y el alto para realizar la cotización  <i class="fa-solid fa-box text-gray-300"></i>
             </div>
           </div>
-          <div class="overflow-x-auto py-6" v-else>
+          <div class="py-6" v-else>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -518,8 +518,8 @@ export default {
       },
 
       lengthTotalSheetCentimeters(largo, ancho) {
-            const largo_total_pliego = ((largo * 2)+(ancho * 2)+ 6)
-            return largo_total_pliego
+        const largo_total_pliego = ((largo * 2)+(ancho * 2)+ 6)
+        return largo_total_pliego
       },
       
       lengthTotalSheetMilimeters(largo, ancho) {
@@ -565,28 +565,28 @@ export default {
       },
       
       widthTotalSheetCentimeters(ancho, alto) {
-          const ancho_total_pliego = ancho + alto + 3
-          return ancho_total_pliego
+        const ancho_total_pliego = ancho + alto + 3
+        return ancho_total_pliego
       },
       
       priceWithIVA(type_box_value, alto, largo, ancho) {
-          var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value)) * 1.16);
-          return price_with_iva.toFixed(2)
+        var price_with_iva = ((((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value)) * 1.16);
+        return price_with_iva.toFixed(2)
       },
       
       priceWithoutIVA(type_box_value, alto, largo, ancho) {
-          var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value));
-          return price_without_iva.toFixed(2)
+        var price_without_iva = (((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * (((((alto*10)+9)+((ancho*10)+8))/1000000) * type_box_value));
+        return price_without_iva.toFixed(2)
       },
       
       squareArea(alto, largo, ancho) {
-          var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((ancho*10)+8)))/1000000);
-          return square_area
+        var square_area =(((((largo * 10)* 2) + 10) + (((((ancho*10)*2)+6))+35)) * ((((alto*10)+9)+((ancho*10)+8)))/1000000);
+        return square_area
       },
       
       volumetricWeight(alto, largo, ancho) {
-          var volumetric_weight = (largo * ancho * alto)/ 5000;
-          return `${parseInt(volumetric_weight)}`
+        var volumetric_weight = (largo * ancho * alto)/ 5000;
+        return `${parseInt(volumetric_weight)}`
       },
 
       miniManufacturing(type_box_value, alto, largo, ancho) {
