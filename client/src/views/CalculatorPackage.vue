@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="py-6" v-else>
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="py-3 px-6">
@@ -208,6 +208,24 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- <div class="container">
+              <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                  <tr class="bg-gray-200 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                    <th class="p-3 text-left">Minimo de fabricación</th>
+                    <th class="p-3 text-left">Precio por caja</th>
+                    <th class="p-3 text-left">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="flex-1 sm:flex-none">
+                  <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-sm">
+                    <td class="border-grey-light border hover:bg-gray-100 p-3">{{this.quote_manufacturing.fabricacion_minimo_boxes}} pza</td>
+                    <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{this.quote_manufacturing.precio_unitario_con_iva}}</td>
+                    <td class="border-grey-light border hover:bg-gray-100 p-3">{{this.quote_manufacturing.precio_total_con_iva}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
             <div class="flex items-center py-8">
               <button type="button" class="ml-auto text-white bg-blue-pp border-0 py-2 px-8 focus:outline-none bg-blue-900 rounded" @click="showQuoteCalculator" v-if="Object.keys(msg).length === 0">
                   <i class="fa-solid fa-box"></i> Confirmar
@@ -304,6 +322,26 @@
   </modal-calculator>
   </section>
 </template>
+
+<!-- <style scoped>
+  @media (min-width: 640px) {
+    table {
+      display: inline-table !important;
+    }
+
+    thead tr:not(:first-child) {
+      display: none;
+    }
+  }
+
+  td:not(:last-child) {
+    border-bottom: 0;
+  }
+
+  th:not(:last-child) {
+    border-bottom: 2px solid rgba(0, 0, 0, .1);
+  }
+</style> -->
 
 <script>
 import PackageService from '../PackageService'
