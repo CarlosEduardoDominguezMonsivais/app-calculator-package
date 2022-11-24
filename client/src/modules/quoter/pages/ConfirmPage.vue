@@ -83,13 +83,13 @@
                                 <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.fabricacion_minimo_boxes}} pza</span>
                             </div>
                             <div class="flex justify-between py-4 text-gray-600">
-                                <span>Precio total (sin iva)</span>
-                                <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.precio_total_sin_iva}} <!--<span class="text-xs"> sin iva</span>--></span>
+                                <span>Subtotal</span>
+                                <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.precio_total_sin_iva}} <span class="text-xs"> sin iva</span></span>
                             </div>
                         </div>
                         <div class="font-semibold text-xl px-4 flex justify-between py-8 text-gray-600">
-                            <span>Precio total (con iva)</span>
-                            <span>{{quote_calculated.fabricacion.precio_total_con_iva}} <!--<span class="text-xs"> con iva</span>--></span>
+                            <span>Precio total</span>
+                            <span>{{quote_calculated.fabricacion.precio_total_con_iva}} <span class="text-xs"> con iva</span></span>
                         </div>
                     </div>
                 </div>
