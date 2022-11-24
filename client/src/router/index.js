@@ -1,24 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CalculatorPackageView from '../views/CalculatorPackage.vue'
-import ConfirmQuoteView from '../views/ConfirmQuote.vue'
-
+import NoPageFound from '@/modules/shared/pages/NoPageFound'
+ 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: CalculatorPackageView
+    name: 'CalculatorPage',
+    component: () => import(/* webpackChunkName: "CalculatorPage" */ '@/modules/quoter/pages/CalculatorPage')
   },
   {
-    path: '/confirm/quote',
-    name: 'confirmQuote',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: CalculatorPackageView
-    component: ConfirmQuoteView,
-    // component: () => import(/* webpackChunkName: "ConfirmQuoteView" */ '../views/ConfirmQuote.vue'),
-    props: true
+    path: '/confirmation',
+    name: 'confirmPage',
+    component: () => import(/* webpackChunkName: "ConfirmationPage" */ '@/modules/quoter/pages/ConfirmPage'),
   },
+  {
+    path: '/:pathMatch(.*)*', 
+    name: 'NoPageFound',
+    component: NoPageFound
+  }
 ]
 
 const router = createRouter({
