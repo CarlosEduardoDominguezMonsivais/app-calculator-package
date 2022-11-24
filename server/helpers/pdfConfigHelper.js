@@ -1,4 +1,9 @@
 module.exports = {
+    childProcessOptions: { 
+        env: { 
+            OPENSSL_CONF: '/dev/null' 
+        }
+    },
     formate: 'A3',
     orientation: 'portrait',
     border: '8mm',
