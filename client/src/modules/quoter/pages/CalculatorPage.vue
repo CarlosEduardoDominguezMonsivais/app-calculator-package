@@ -1,6 +1,6 @@
 <template>
   <section class="text-gray-700 body-font overflow-hidden md:bg-gris-default">
-    <div class="container px-5 py-8 md:py-24 mx-auto">
+    <div class="container px-2 md:px-5 py-8 md:py-24 mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="bg-white">
         <img alt="ecommerce" class="w-full object-cover object-center"
