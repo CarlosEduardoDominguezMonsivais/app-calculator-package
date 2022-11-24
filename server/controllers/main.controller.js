@@ -6,6 +6,8 @@ const emailer = require("../config/emailer");
 const pdf = require('pdf-creator-node');
 const path = require('path');
 const pdfConfig = require('../helpers/pdfConfigHelper');
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
 
 class MainController {
     index(_req, res) {
@@ -192,26 +194,8 @@ class MainController {
         try {
         const data =  req.body;
         const valores = await packageSchema.create(data)
-        // const { user, quote } = valores
-        // const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
-        // const filename = Math.random() + '_doc' + '.pdf';
-        // var document = {
-        //     html: html,
-        //     data: {
-        //         user,
-        //         quote
-        //     },
-        //     path: './docs/' + filename,
-        //     type: "",
-        // };
-
-        // pdf.create(document, pdfConfig)
-        //     .then((res) => {
-        //         console.log(res);
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
+        const { user, quote } = valores
+        generatePdf(user, quote)
             emailer.sendMail(valores)
             res.status(201).send({ data })
         }
@@ -219,28 +203,75 @@ class MainController {
             console.log(error)
         }
     }
-
-    // generatePdf(req, res) {
-    //     const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
-    //     const filename = Math.random() + '_doc' + '.pdf';
-    //     var document = {
-    //         html: html,
-    //         data: {
-    //             valores,
-    //         },
-    //         path: filename,
-    //         type: "",
-    //     };
-
-    //     pdf.create(document, options)
-    //         .then((res) => {
-    //             console.log(res);
-    //         })
-    //         .catch((error) => {
-    //             console.error(error);
-    //         });
-    // }
-
 }
+
+function generatePdf(user, quote) {
+    const html = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/purchase_order.html'), 'utf8');
+    const html2 = fs.readFileSync(path.join(__dirname, '../views/templates_pdfs/manufacturing_card.html'), 'utf8');
+    const filename = Math.random() + '_order' + '.pdf';
+    const filename2 = Math.random() + '_card_manufacturing' + '.pdf';
+
+    var document = {
+        html: html,
+        data: {
+            user,
+            quote
+        },
+        path: './docs/orders/' + filename,
+        type: "",
+    };
+
+    var document2 = {
+        html: html2,
+        data: {
+            user,
+            quote
+        },
+        path: './docs/card_manufacturing/' + filename2,
+        type: "",
+    };
+
+    pdf.create(document, pdfConfig)
+    .then((res) => {
+        const file = res.filename
+        const body = fs.readFileSync(path.join(file))
+        const fileNameEnd = 'docs/orders/' +filename
+        uploadToS3(body, fileNameEnd, file)
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+    
+    pdf.create(document2, pdfConfig)
+    .then((res) => {
+        const file = res.filename
+        const body = fs.readFileSync(path.join(file))
+        const fileNameEnd = 'docs/card_manufacturing/' +filename2
+        uploadToS3(body, fileNameEnd, file)
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+} 
+
+function uploadToS3 (body, fileNameEnd, file) {
+    AWS.config.update({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    });
+    
+    var params = {
+      Body: body,
+      ACL: 'public-read',
+      Bucket: process.env.S3_BUCKET,
+      Key: fileNameEnd
+    };
+    fs.unlinkSync(file)
+    s3.upload(params).promise()
+    .then((data)=>{
+        console.log(data.Location)
+    })
+    .catch(err=>console.log(err))
+  }
 
 module.exports = new MainController();

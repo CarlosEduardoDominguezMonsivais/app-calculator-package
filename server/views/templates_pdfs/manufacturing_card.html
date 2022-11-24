@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .linea {
+            border-top: 1px solid black;
+            height: 2px;
+            max-width: 300px;
+            padding: 0;
+            margin: 50px auto 0 auto;
+        }
+
+        .contenedor {
+            position: relative;
+            display: inline-block;
+        }
+
+        .largo_total {
+            position: absolute;
+            top: 320px;
+            left: 380px;
+        }
+
+        .largo_extra {
+            position: absolute;
+            top: 300px;
+            left: 49px;
+        }
+
+        .primer_largo2 {
+            position: absolute;
+            top: 300px;
+            left: 130px;
+        }
+
+        .segundo_largo2 {
+            position: absolute;
+            top: 300px;
+            left: 490px;
+        }
+
+        .primer_largo1 {
+            position: absolute;
+            top: 300px;
+            left: 315px;
+        }
+
+        .segundo_largo1 {
+            position: absolute;
+            top: 300px;
+            left: 665px;
+        }
+
+        .primer_ancho2{
+            position: absolute;
+            top: 123px;
+            left: 800px;
+        }
+        .primer_ancho1 {
+            position: absolute;
+            top: 187px;
+            left: 800px;
+        }
+
+        .segundo_ancho2 {
+            position: absolute;
+            top: 252px;
+            left: 800px;
+        }
+
+        .ancho_total {
+            position: absolute;
+            top: 190px;
+            left: 848px;
+        }
+
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom: 1rem;">
+        <tr>
+            <td align="left" valign="top" bgcolor="#ffe77b" style="background-color:#fff;">
+                <img src="https://cdn.shopify.com/s/files/1/0015/6090/3792/files/ri_1_256x256_crop_center.png?v=1668616169" alt="">
+            </td>
+            <td></td>
+            <td></td>
+            <td align="right" bgcolor="#ffe77b" style="background-color: #fff;">
+                <div style="font-size: .8rem; font-weight: 400; color: rgb(43, 40, 40);">Belisario Domínguez 2770</div>
+                <div style="font-size: .8rem; font-weight: 400; color: rgb(43, 40, 40);">Col. Obispado, Monterrey, N.L.</div>
+                <h2 style="font-size: .8rem; line-height: 1.75rem; font-weight: 400; color: rgb(43, 40, 40);">{{quote.date}}</h2>
+            </td>
+        </tr>
+    </table>
+
+    <h4 style="font-size: .5; font-weight: 700; text-transform: uppercase; padding-bottom: .5rem; text-align: center;">TARJETA DE FABRICACIÓN</h4>
+
+    <table width="100%" border="1" style="border-collapse: collapse;">
+        <thead class="thead">
+            <tr>
+                <td class="td">Nombre del cliente: <span style="font-weight: 700;">{{user.name}}</span></td>
+                <td class="td" colspan="3" align="center" style="font-weight: 700;">Medidas interiores (mm)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td">Tipo de caja: 
+                {{#ifCond this.quote.type_box '==' '26_ects_C'}}
+                <span style="font-weight: 700;"> CRR</span>
+                {{/ifCond}}
+                {{#ifCond this.quote.type_box '==' '32_ects_C'}}
+                <span style="font-weight: 700;"> CRR</span>
+                {{/ifCond}}
+                {{#ifCond this.quote.type_box '==' '36_ects_BC'}}
+                <span style="font-weight: 700;"> BCRR</span>
+                {{/ifCond}}
+                {{#ifCond this.quote.type_box '==' '48_ects_BC'}}
+                <span style="font-weight: 700;"> BCRR</span>
+                {{/ifCond}}
+                {{#ifCond this.quote.type_box '==' '61_ects_BC'}}
+                <span style="font-weight: 700;"> BCRR</span>
+                {{/ifCond}}
+                </td>
+                <td class="td" align="center" style="font-weight: 700;">{{quote.largo_mm}}</td>
+                <td class="td" align="center" style="font-weight: 700;">{{quote.ancho_mm}}</td>
+                <td class="td" align="center" style="font-weight: 700;">{{quote.alto_mm}}</td>
+            </tr>
+            <tr>  
+                <td class="td">Resistencia:
+                    {{#ifCond this.quote.type_box '==' '26_ects_C'}}
+                        <span style="font-weight: 700;"> 26 ETCs</span>
+                    {{/ifCond}}
+                    {{#ifCond this.quote.type_box '==' '32_ects_C'}}
+                        <span style="font-weight: 700;"> 32 ETCs</span>
+                    {{/ifCond}}
+                    {{#ifCond this.quote.type_box '==' '36_ects_BC'}}
+                        <span style="font-weight: 700;"> 36 ETCs</span>
+                    {{/ifCond}}
+                    {{#ifCond this.quote.type_box '==' '48_ects_BC'}}
+                        <span style="font-weight: 700;"> 48 ETCs</span>
+                    {{/ifCond}}
+                    {{#ifCond this.quote.type_box '==' '61_ects_BC'}}
+                        <span style="font-weight: 700;"> 61 ETCs</span>
+                    {{/ifCond}}
+                </td>
+                <td class="td" align="center">LARGO</td>
+                <td class="td" align="center">ANCHO</td>
+                <td class="td" align="center">ALTO</td>
+            </tr>
+            <tr>  
+                <td class="td">KRAFT</td>
+                <td class="td" colspan="3">Número de piezas: <span  style="font-weight: 700;">{{quote.fabricacion.fabricacion_minimo_boxes}}</span></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="td" style="font-weight: 700;">Observaciones</td>
+                <td class="td" colspan="3" style="font-weight: 700;">Impresión en 2 caras de logo personalizado a 1 tinta</td>
+            </tr>
+          </tfoot>
+    </table>
+
+    <div align="center" >
+        <div class="contenedor" style="padding-top: 3rem;" width="100%">
+            <img style="max-width: 900px" src="https://parapaquetes-files.s3.us-east-2.amazonaws.com/images/esquema-fabricacion.png">
+            <p class="largo_extra">{{quote.largo_pliego_mm.largo_ceja}}</p> 
+            <p class="primer_largo2">{{quote.largo_pliego_mm.largo2_pliego}}</p>
+            <p class="largo_total">{{quote.largo_pliego_mm.length_total_sheet_milimeters}}</p>
+            <p class="primer_largo1">{{quote.largo_pliego_mm.largo1_pliego}}</p>
+            <p class="segundo_largo2">{{quote.largo_pliego_mm.largo2_pliego}}</p>
+            <p class="segundo_largo1">{{quote.largo_pliego_mm.largo1_pliego}}</p> 
+            <p class="segundo_ancho2">{{quote.ancho_pliego_mm.ancho2_pliego}}</p>
+            <p class="primer_ancho1">{{quote.ancho_pliego_mm.ancho1_pliego}}</p> 
+            <p class="primer_ancho2">{{quote.ancho_pliego_mm.ancho2_pliego}}</p> 
+            <p class="ancho_total">{{quote.ancho_pliego_mm.width_total_sheet_milimeters}}</p>
+        </div>
+    </div>
+
+    <div  align="center" style="padding-top: 6rem;">
+        <div class="linea"></div>
+        <h3 style="font-weight: 400;">Nombre y firma <span style="font-weight: 700;">cliente</span></h3>
+    </div>
+    
+</body>
+</html>
