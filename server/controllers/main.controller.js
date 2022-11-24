@@ -231,7 +231,7 @@ function generatePdf(user, quote) {
         type: "",
     };
 
-    pdf.create(document , {/* ... */ childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}}, pdfConfig)
+    pdf.create(document, pdfConfig, {/* ... */ childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}})
     .then((res) => {
         const file = res.filename
         const body = fs.readFileSync(path.join(file))
@@ -242,7 +242,7 @@ function generatePdf(user, quote) {
         console.error(error);
     });
     
-    pdf.create(document2 , {/* ... */ childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}}, pdfConfig)
+    pdf.create(document2, pdfConfig, {/* ... */ childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}})
     .then((res) => {
         const file = res.filename
         const body = fs.readFileSync(path.join(file))
