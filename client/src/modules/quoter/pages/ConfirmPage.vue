@@ -55,6 +55,7 @@
                         </div>
                     </div>
                     <div class="bg-white px-4 md:px-12 py-8 md:py-24 lg:block">
+                        <h2 class="text-xl">Resumen del pedido</h2>
                         <ul class="py-6 border-b space-y-6 px-4 sm:px-8">
                             <li class="grid grid-cols-1 md:grid-cols-6 gap-2 border-b-1">
                                 <div class="col-span-1 self-center">
@@ -82,13 +83,13 @@
                                 <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.fabricacion_minimo_boxes}} pza</span>
                             </div>
                             <div class="flex justify-between py-4 text-gray-600">
-                                <span>Costo total</span>
-                                <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.costo_total_con_iva}} <span class="text-xs"> con iva</span></span>
+                                <span>Precio total (sin iva)</span>
+                                <span class="font-semibold text-blue-pp">{{quote_calculated.fabricacion.precio_total_sin_iva}} <!--<span class="text-xs"> sin iva</span>--></span>
                             </div>
                         </div>
                         <div class="font-semibold text-xl px-4 sm:px-8 flex justify-between py-8 text-gray-600">
-                            <span>Precio total</span>
-                            <span>{{quote_calculated.fabricacion.precio_total_con_iva}} <span class="text-xs"> con iva</span></span>
+                            <span>Precio total (con iva)</span>
+                            <span>{{quote_calculated.fabricacion.precio_total_con_iva}} <!--<span class="text-xs"> con iva</span>--></span>
                         </div>
                     </div>
                 </div>
