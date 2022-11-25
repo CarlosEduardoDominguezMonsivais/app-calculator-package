@@ -43,6 +43,21 @@
   #preloader:before {
     content: "";
     position: fixed;
+    top: calc(10% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #0B4F7C;
+    border-top-color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+  }
+
+  @media screen and (min-width: 800px) {
+    #preloader:before {
+    content: "";
+    position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     border: 6px solid #0B4F7C;
@@ -53,6 +68,7 @@
     -webkit-animation: animate-preloader 1s linear infinite;
     animation: animate-preloader 1s linear infinite;
   }
+}
 
   @-webkit-keyframes animate-preloader {
     0% {
