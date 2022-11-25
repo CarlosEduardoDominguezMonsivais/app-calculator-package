@@ -236,6 +236,9 @@
       </div>
     </div>
   </section>
+  <!-- <div class="loading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div> -->
 </template>
 
 <!-- <style scoped>
