@@ -324,6 +324,7 @@ export default {
   methods: {
     createCalculation () {
         this.$store.commit('calculation/createCalculation', this.quoteBox)
+        window.top.postMessage('send quote', '*')
         this.$router.push({ path: '/confirmation' })
       },
 
