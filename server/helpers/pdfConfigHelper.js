@@ -14,9 +14,9 @@ module.exports = {
             last: 'Last Page'
         }
     },
-    childProcessOptions: { 
-        env: { 
-            OPENSSL_CONF: '/dev/null' 
-        }
-    }
+    // childProcessOptions: { 
+    //     env: { 
+    //         OPENSSL_CONF: '/dev/null' 
+    //     }
+    // }
 }
