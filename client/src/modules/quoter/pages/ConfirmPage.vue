@@ -117,6 +117,7 @@ export default {
     methods: {
         returnCalculation () {
         this.$store.commit('calculation/createCalculation', {})
+        window.top.postMessage('event scrollTo', '*')
         this.$router.push({ path: '/' })
       },
 
@@ -173,6 +174,7 @@ export default {
             icon: "success",
           })
             this.$store.commit('calculation/createCalculation', {})
+            window.top.postMessage('event scrollTo', '*')
             this.$router.push({ path: '/' })
         }).catch(error => {
           Swal.fire({
