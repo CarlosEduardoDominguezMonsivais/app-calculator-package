@@ -266,7 +266,7 @@ function uploadToS3 (body, fileNameEnd, file) {
       Bucket: process.env.S3_BUCKET,
       Key: fileNameEnd
     };
-    fs.unlinkSync(file)
+    // fs.unlinkSync(file)
     s3.upload(params).promise()
     .then((data)=>{
         console.log(data.Location)

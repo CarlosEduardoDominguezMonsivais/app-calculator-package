@@ -8,9 +8,9 @@ module.exports = {
     footer: {
         height: '20mm',
         contents: {
-            first: 'Cover page',
-            2: 'Second page',
-            default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+            first: '<span style="font-size: 0.45rem;">Cover page</span>',
+            2: '<span style="font-size: 0.45rem;">Second page</span>',
+            default: '<span style="color: #444; font-size: 0.45rem;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
             last: 'Last Page'
         }
     },

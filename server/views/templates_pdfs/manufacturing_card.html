@@ -16,88 +16,89 @@
         .contenedor {
             position: relative;
             display: inline-block;
+            font-size: 0.45rem;
         }
 
         .largo_total {
             position: absolute;
-            top: 320px;
-            left: 380px;
+            top: 200px;
+            left: 210px;
         }
 
         .largo_extra {
             position: absolute;
-            top: 300px;
-            left: 49px;
+            top: 190px;
+            left: 27px;
         }
 
         .primer_largo2 {
             position: absolute;
-            top: 300px;
-            left: 130px;
+            top: 190px;
+            left: 70px;
         }
 
         .segundo_largo2 {
             position: absolute;
-            top: 300px;
-            left: 490px;
+            top: 190px;
+            left: 273px;
         }
 
         .primer_largo1 {
             position: absolute;
-            top: 300px;
-            left: 315px;
+            top: 190px;
+            left: 172px;
         }
 
         .segundo_largo1 {
             position: absolute;
-            top: 300px;
-            left: 665px;
+            top: 190px;
+            left: 370px;
         }
 
         .primer_ancho2{
             position: absolute;
-            top: 123px;
-            left: 800px;
+            top: 91px;
+            left: 445px;
         }
         .primer_ancho1 {
             position: absolute;
-            top: 187px;
-            left: 800px;
+            top: 128px;
+            left: 445px;
         }
 
         .segundo_ancho2 {
             position: absolute;
-            top: 252px;
-            left: 800px;
+            top: 163px;
+            left: 445px;
         }
 
         .ancho_total {
             position: absolute;
-            top: 190px;
-            left: 848px;
+            top: 129px;
+            left: 472px;
         }
 
     </style>
 </head>
 <body>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom: 1rem;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom: 1rem; font-size: 0.45rem;">
         <tr>
             <td align="left" valign="top" bgcolor="#ffe77b" style="background-color:#fff;">
-                <img src="https://parapaquetes-files.s3.us-east-2.amazonaws.com/images/logo_targeta_fabricacion.png">
+                <img height="30" src="https://parapaquetes-files.s3.us-east-2.amazonaws.com/images/logo_targeta_fabricacion.png">
             </td>
             <td></td>
             <td></td>
             <td align="right" bgcolor="#ffe77b" style="background-color: #fff;">
-                <div style="font-size: .8rem; font-weight: 400; color: rgb(43, 40, 40);">Belisario Domínguez 2770</div>
-                <div style="font-size: .8rem; font-weight: 400; color: rgb(43, 40, 40);">Col. Obispado, Monterrey, N.L.</div>
-                <h2 style="font-size: .8rem; line-height: 1.75rem; font-weight: 400; color: rgb(43, 40, 40);">{{quote.date}}</h2>
+                <div style="font-weight: 400; color: rgb(43, 40, 40);">Belisario Domínguez 2770</div>
+                <div style="font-weight: 400; color: rgb(43, 40, 40);">Col. Obispado, Monterrey, N.L.</div>
+                <div style="line-height: 1.75rem; font-weight: 400; color: rgb(43, 40, 40);">{{quote.date}}</div>
             </td>
         </tr>
     </table>
 
-    <h4 style="font-size: .5; font-weight: 700; text-transform: uppercase; padding-bottom: .5rem; text-align: center;">TARJETA DE FABRICACIÓN</h4>
+    <h4 style="font-size: .45rem; font-weight: 700; text-transform: uppercase; padding-bottom: .5rem; text-align: center;">TARJETA DE FABRICACIÓN</h4>
 
-    <table width="100%" border="1" style="border-collapse: collapse;">
+    <table width="100%" border="1" style="border-collapse: collapse; font-size: 0.45rem;">
         <thead class="thead">
             <tr>
                 <td class="td">Nombre del cliente: <span style="font-weight: 700;">{{user.name}}</span></td>
@@ -164,7 +165,7 @@
 
     <div align="center" >
         <div class="contenedor" style="padding-top: 3rem;" width="100%">
-            <img style="max-width: 900px" src="https://parapaquetes-files.s3.us-east-2.amazonaws.com/images/esquema-fabricacion.png">
+            <img style="max-width: 500px" src="https://parapaquetes-files.s3.us-east-2.amazonaws.com/images/esquema-fabricacion.png">
             <p class="largo_extra">{{quote.largo_pliego_mm.largo_ceja}}</p> 
             <p class="primer_largo2">{{quote.largo_pliego_mm.largo2_pliego}}</p>
             <p class="largo_total">{{quote.largo_pliego_mm.length_total_sheet_milimeters}}</p>
@@ -178,7 +179,7 @@
         </div>
     </div>
 
-    <div  align="center" style="padding-top: 6rem;">
+    <div  align="center" style="padding-top: 6rem; font-size: .45rem;">
         <div class="linea"></div>
         <h3 style="font-weight: 400;">Nombre y firma <span style="font-weight: 700;">cliente</span></h3>
     </div>
